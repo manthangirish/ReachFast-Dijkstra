@@ -9,7 +9,7 @@ app.use(express.json());
 
 const filePath = path.join(__dirname, "distances.txt");
 
-// Parse the text file and return the distances as a graph object
+
 function parseGraph() {
   const data = fs.readFileSync(filePath, "utf-8");
   const lines = data.trim().split("\n");
@@ -26,7 +26,7 @@ function parseGraph() {
   return graph;
 }
 
-// Dijkstra's Algorithm Implementation
+
 function dijkstra(graph, startNode, endNode) {
   const distances = {};
   const visited = new Set();
@@ -74,13 +74,12 @@ app.get("/shortest-path", (req, res) => {
 
 app.listen(5000, () => console.log("Server running on port 5000"));
 
-// Add this function to extract city names
+
 function getCities() {
   const graph = parseGraph();
   return Object.keys(graph);
 }
 
-// Add a new endpoint to get cities
 app.get("/cities", (req, res) => {
   const cities = getCities();
   res.json(cities);
